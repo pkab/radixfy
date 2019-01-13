@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Live Feed</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+function read2txt(file)
+{
+	var rwf = new XMLHttpRequest();
+	rwf.open("GET",file,true);
+	rwf.onreadystatechange=function()
+	{
+		if(rwf.readyState===4)
+		{
+			if(rwf.status===200||rwf.status===0)
+			{
+				var allText = rwf.responseText;
+				console.log(allText);
+				alert(allText);
+			}
+		}
+	}
+	rwf.send(null);
+}
+function fun(){
+	console.log('{{result}}');
+}
+</script>
+<script type="text/javascript" src="{{url_for('static',filename='live.js')}}"></script>
+</head>
+<body>
+	<h1>Value:{% print value %}</h1><br>
+	<button onclick="read2txt('{{url_for('static',filename='deg.txt')}}')">Click Me</button>
+</body>
+</html>
